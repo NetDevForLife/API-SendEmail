@@ -1,4 +1,5 @@
 using System.Globalization;
+using API_SendEmail.Models.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
@@ -26,6 +27,9 @@ namespace API_SendEmail
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_SendEmail", Version = "v1" });
             });
+
+            // Options
+            services.Configure<SmtpOptions>(Configuration.GetSection("Smtp"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
