@@ -1,5 +1,6 @@
 using System.Globalization;
 using API_SendEmail.Models.Options;
+using API_SendEmail.Models.Services.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
@@ -21,12 +22,13 @@ namespace API_SendEmail
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_SendEmail", Version = "v1" });
             });
+
+            services.AddTransient<IEmailSenderService, MailKitEmailSender>();
 
             // Options
             services.Configure<SmtpOptions>(Configuration.GetSection("Smtp"));
@@ -51,7 +53,6 @@ namespace API_SendEmail
             
             app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

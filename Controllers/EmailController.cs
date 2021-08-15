@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using API_SendEmail.Models.InputModels;
+using API_SendEmail.Models.Services.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -9,17 +11,33 @@ namespace API_SendEmail.Controllers
     [Route("api/[controller]")]
     public class EmailController : ControllerBase
     {
-        private readonly ILogger<EmailController> _logger;
+        private readonly ILogger<EmailController> logger;
+        private readonly IEmailSenderService emailService;
 
-        public EmailController(ILogger<EmailController> logger)
+        public EmailController(ILogger<EmailController> logger, IEmailSenderService emailService)
         {
-            _logger = logger;
+            this.logger = logger;
+            this.emailService = emailService;
         }
 
         [HttpGet("Welcome")]
         public IActionResult Welcome()
         {
             return Ok(string.Concat("Ciao sono le ore: ", DateTime.Now.ToLongTimeString()));
+        }
+
+        [HttpPost("InvioEmail")]
+        public async Task<IActionResult> InvioEmail([FromForm] InputMailSender model)
+        {
+            try
+            {
+                await emailService.SendEmailAsync(model);
+                return Ok();
+            }
+            catch
+            {
+                throw new Exception();
+            }
         }
     }
 }
