@@ -49,7 +49,9 @@ namespace API_SendEmail
                 SupportedCultures = new[] { appCulture }
             });
             
+            app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
