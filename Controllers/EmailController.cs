@@ -5,39 +5,38 @@ using API_SendEmail.Models.Services.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace API_SendEmail.Controllers
+namespace API_SendEmail.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class EmailController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class EmailController : ControllerBase
+    private readonly ILogger<EmailController> logger;
+    private readonly IEmailSenderService emailService;
+
+    public EmailController(ILogger<EmailController> logger, IEmailSenderService emailService)
     {
-        private readonly ILogger<EmailController> logger;
-        private readonly IEmailSenderService emailService;
+        this.logger = logger;
+        this.emailService = emailService;
+    }
 
-        public EmailController(ILogger<EmailController> logger, IEmailSenderService emailService)
+    [HttpGet("Welcome")]
+    public IActionResult Welcome()
+    {
+        return Ok(string.Concat("Ciao sono le ore: ", DateTime.Now.ToLongTimeString()));
+    }
+
+    [HttpPost("InvioEmail")]
+    public async Task<IActionResult> InvioEmail([FromForm] InputMailSender model)
+    {
+        try
         {
-            this.logger = logger;
-            this.emailService = emailService;
+            await emailService.SendEmailAsync(model);
+            return Ok();
         }
-
-        [HttpGet("Welcome")]
-        public IActionResult Welcome()
+        catch
         {
-            return Ok(string.Concat("Ciao sono le ore: ", DateTime.Now.ToLongTimeString()));
-        }
-
-        [HttpPost("InvioEmail")]
-        public async Task<IActionResult> InvioEmail([FromForm] InputMailSender model)
-        {
-            try
-            {
-                await emailService.SendEmailAsync(model);
-                return Ok();
-            }
-            catch
-            {
-                throw new Exception();
-            }
+            throw new Exception();
         }
     }
 }
