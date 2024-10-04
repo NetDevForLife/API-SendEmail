@@ -1,4 +1,4 @@
-namespace API_SendEmail;
+namespace API_SendEmail.API_SendEmail;
 
 public class Program
 {
@@ -6,7 +6,6 @@ public class Program
 	{
 		var builder = WebApplication.CreateBuilder(args);
 
-		builder.Services.AddControllers();
 		builder.Services.ConfigureHttpJsonOptions(options =>
 		{
 			options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
@@ -16,6 +15,7 @@ public class Program
 		builder.Services.AddSwaggerGen(options =>
 		{
 			options.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi.SendEmail", Version = "v1" });
+			options.OperationFilter<MissingSchemasOperationFilter>();
 		});
 
 		builder.Services.AddTransient<IEmailSenderService, MailKitEmailSender>();
@@ -40,9 +40,8 @@ public class Program
 		});
 
 		app.UseHttpsRedirection();
-		app.UseRouting();
+		app.MapEndpoints<EmailEndpoints>();
 
-		app.MapControllers();
 		app.Run();
 	}
 }

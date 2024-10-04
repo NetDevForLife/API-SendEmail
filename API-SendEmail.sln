@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API-SendEmail", "API-SendEmail.csproj", "{1F25A699-4FA3-49EA-A0CA-D2E3B9B7F39C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API-SendEmail", "WebApi.SendEmail\API-SendEmail.csproj", "{C165F671-5E92-49E2-82BD-9C3A546CD1D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1F25A699-4FA3-49EA-A0CA-D2E3B9B7F39C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1F25A699-4FA3-49EA-A0CA-D2E3B9B7F39C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1F25A699-4FA3-49EA-A0CA-D2E3B9B7F39C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1F25A699-4FA3-49EA-A0CA-D2E3B9B7F39C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C165F671-5E92-49E2-82BD-9C3A546CD1D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C165F671-5E92-49E2-82BD-9C3A546CD1D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C165F671-5E92-49E2-82BD-9C3A546CD1D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C165F671-5E92-49E2-82BD-9C3A546CD1D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
