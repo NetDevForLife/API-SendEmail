@@ -1,4 +1,4 @@
-namespace API_SendEmail.Models.Options;
+namespace Models.Options;
 
 public class SmtpOptions
 {

@@ -1,4 +1,4 @@
-﻿namespace API_SendEmail.Extensions;
+﻿namespace Extensions;
 
 public static class EndpointRouteBuilderExtensions
 {

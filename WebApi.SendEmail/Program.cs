@@ -11,12 +11,7 @@ public class Program
 			options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
 		});
 
-		builder.Services.AddEndpointsApiExplorer();
-		builder.Services.AddSwaggerGen(options =>
-		{
-			options.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi.SendEmail", Version = "v1" });
-			options.OperationFilter<MissingSchemasOperationFilter>();
-		});
+		builder.Services.AddOpenApi();
 
 		builder.Services.AddTransient<IEmailSenderService, MailKitEmailSender>();
 		builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection("Smtp"));
@@ -28,8 +23,11 @@ public class Program
 			app.UseDeveloperExceptionPage();
 		}
 
-		app.UseSwagger();
-		app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi.SendEmail v1"));
+		app.MapOpenApi();
+		app.UseSwaggerUI(options =>
+		{
+			options.SwaggerEndpoint("/openapi/v1.json", "v1");
+		});
 
 		CultureInfo appCulture = new("it-IT");
 

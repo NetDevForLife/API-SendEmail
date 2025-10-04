@@ -1,4 +1,6 @@
-namespace API_SendEmail.Models.Services.Infrastructure;
+using Models.InputModels;
+
+namespace Models.Services.Infrastructure;
 
 public interface IEmailSenderService
 {

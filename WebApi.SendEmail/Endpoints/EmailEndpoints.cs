@@ -1,4 +1,7 @@
-﻿namespace API_SendEmail.Endpoints;
+﻿using Extensions;
+using Models.InputModels;
+
+namespace Endpoints;
 
 public class EmailEndpoints : IEndpointRouteHandler
 {
