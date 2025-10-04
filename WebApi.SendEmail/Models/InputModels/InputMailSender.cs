@@ -1,4 +1,4 @@
-namespace API_SendEmail.Models.InputModels;
+namespace Models.InputModels;
 
 public class InputMailSender
 {

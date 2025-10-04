@@ -1,4 +1,7 @@
-namespace API_SendEmail.Models.Services.Infrastructure;
+using Models.InputModels;
+using Models.Options;
+
+namespace Models.Services.Infrastructure;
 
 public class MailKitEmailSender(IOptionsMonitor<SmtpOptions> smtpOptionsMonitor) : IEmailSenderService
 {
